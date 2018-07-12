@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Simple App UI</string>
+    <string name="please_fill_in_requirement_profile_information">Please Fill-in Reguirement Profile Information</string>
+    <string name="upload_profile_picture">Upload Profile Picture</string>
+    <string name="username">Username</string>
+    <string name="email_address">E-mail Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="_continue">Continue</string>
+    <string name="logout">Logout</string>
+    <string name="register_here">Register Here</string>
+    <string name="email">Email</string>
+    <string name="Password">Password</string>
+    <string name="register">Register</string>
+    <string name="register_already_login_here">Register Already? Login Here</string>
+    <string name="Login">Login</string>
+    <string name="login_here">Login Here</string>
+    <string name="not_register_yet_click_here_for_register">Not Register yet? Click here for register</string>
+    />
+</resources>

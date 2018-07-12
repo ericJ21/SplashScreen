@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "803551220393",
+    "firebase_url": "https://simpleuiapp.firebaseio.com",
+    "project_id": "simpleuiapp",
+    "storage_bucket": "simpleuiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803551220393:android:ff46cccaea91261e",
+        "android_client_info": {
+          "package_name": "com.example.nyxulric.simpleappui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803551220393-dsric5it8r877uv0uigcop047ndn0got.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyRqwa4BnG5AKPNm16uU7ky1FDeWJQNRA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
