@@ -11,10 +11,32 @@
     <string name="register_here">Register Here</string>
     <string name="email">Email</string>
     <string name="Password">Password</string>
-    <string name="register">Register</string>
     <string name="register_already_login_here">Register Already? Login Here</string>
     <string name="Login">Login</string>
     <string name="login_here">Login Here</string>
     <string name="not_register_yet_click_here_for_register">Not Register yet? Click here for register</string>
-    />
+    <string name="textview">textView</string>
+    <string name="textview1">textView2</string>
+    <string name="textview2">textView3</string>
+    <string name="todo">Todo</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="out">Out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="profile">Profile</string>
+    <string name="message">Message</string>
+    <string name="chat">Chat</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="message_fragment">Message Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="chat_fragment">Chat Fragment</string>
+    <string name="register">Register</string>
+    <string name="Todol">TODO</string>
+    <string name="change_password">Change Password?</string>
+    <string name="update">Update</string>
+    <string name="clear">Clear</string>
+
 </resources>

@@ -36,12 +36,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (firebaseAuth.getCurrentUser() != null){
             //profile activity
             finish();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
         textViewLoginHere = findViewById(R.id.textViewLoginHere);
         textViewRegisterHere = findViewById(R.id.textViewNotRegistered);
-        editTextEmail = findViewById(R.id.editEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextEmail = findViewById(R.id.editEmailAddress);
+        editTextPassword = findViewById(R.id.editPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
 
         progressDialog = new ProgressDialog(this);
@@ -75,7 +75,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Cannot Login", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

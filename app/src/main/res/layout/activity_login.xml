@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFE00"
     tools:context=".LoginActivity">
 
     <RelativeLayout
@@ -20,18 +21,20 @@
             android:textSize="24sp"/>
 
         <EditText
-            android:id="@+id/editEmail"
+            android:id="@+id/editEmailAddress"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text_bg"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:layout_marginTop="200dp"
             android:layout_centerHorizontal="true" />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editPassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text_bg"
             android:hint="@string/Password"
             android:inputType="textPassword"
             android:layout_marginTop="250dp"
