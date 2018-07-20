@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (firebaseAuth.getCurrentUser() != null){
             //profile activity
             finish();
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
         }
         textViewLoginHere = findViewById(R.id.textViewLoginHere);
         textViewRegisterHere = findViewById(R.id.textViewNotRegistered);
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            startActivity(new Intent(LoginActivity.this, SecondActivity.class));
                         }else{
                             Toast.makeText(LoginActivity.this, "Cannot Login", Toast.LENGTH_SHORT).show();
                         }

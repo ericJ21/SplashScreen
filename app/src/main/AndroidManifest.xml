@@ -3,8 +3,8 @@
     package="com.example.nyxulric.simpleappui">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -27,9 +28,11 @@
         <activity android:name=".DisplayDataActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".UpdatePassword">
-        </activity>
-        <activity android:name=".NavHeader"/>
+        <activity android:name=".UpdatePassword" />
+        <activity android:name=".NavHeader" />
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ProductListingActivity" />
+        <activity android:name=".ItemDetailActivity"></activity>
     </application>
 
 </manifest>
