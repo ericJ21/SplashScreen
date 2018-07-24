@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button btnAddIteme, btnProfile;
+    private Button btnAddIteme, btnProfile, btnMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class SecondActivity extends AppCompatActivity {
 
         btnProfile = findViewById(R.id.btnProfileData);
         btnAddIteme = findViewById(R.id.btnAddItem);
+        btnMap = findViewById(R.id.btn_map);
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +33,14 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(SecondActivity.this, ProductListingActivity.class));
+            }
+        });
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(SecondActivity.this,FirebaseToGoogleMapActivity.class));
             }
         });
     }

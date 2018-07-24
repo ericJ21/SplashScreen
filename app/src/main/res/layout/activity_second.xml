@@ -44,5 +44,14 @@
         android:text="Profile"
         android:textSize="14sp" />
 
+    <Button
+        android:id="@+id/btn_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="93dp"
+        android:text="Map Location" />
+
 
 </RelativeLayout>

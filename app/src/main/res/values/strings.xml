@@ -38,5 +38,12 @@
     <string name="change_password">Change Password?</string>
     <string name="update">Update</string>
     <string name="clear">Clear</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="proceed">Proceed</string>
+    <string name="save">Save</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="name">Name</string>
+    <string name="title_activity_second_maps">Map</string>
 
 </resources>
