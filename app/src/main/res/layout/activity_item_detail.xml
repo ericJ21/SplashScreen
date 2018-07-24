@@ -14,7 +14,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="33dp"
         android:layout_marginTop="64dp"
-        android:text="Category" />
+        android:text="Category"
+        android:clickable="true"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/viewCategory"
@@ -79,32 +81,56 @@
         android:inputType="number"/>
 
     <TextView
-        android:id="@+id/textviewMap"
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/btnCategory"
-        android:layout_marginBottom="217dp"
-        android:text="Map Location"
-        android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/imageMap"
-        android:layout_width="85dp"
-        android:layout_height="52dp"
-        android:layout_alignStart="@+id/btnCategory"
-        android:layout_below="@+id/textviewMap"
-        android:layout_marginTop="-217dp"
-        android:background="@drawable/ic_map" />
+        android:layout_marginTop="320dp"
+        android:text="Current Location"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textMap"
+        android:id="@+id/userLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="184dp"
-        android:layout_toEndOf="@+id/textviewMap"
-        android:text="Location" />
+        android:layout_marginBottom="189dp"
+        android:layout_toEndOf="@+id/btnCategory"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/mapView"
+        android:layout_width="85dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/btnCategory"
+        android:layout_below="@+id/location"
+        android:background="@drawable/ic_map"
+        android:clickable="true"
+        android:fitsSystemWindows="true"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/btnCategory"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="410dp"
+        android:text="Description"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_below="@+id/textViewDescription"
+        android:layout_centerHorizontal="true"
+        android:background="#fff"
+        android:ems="15"
+        android:gravity="left|top"
+        android:hint="Please enter the product description."
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/btnListing"
@@ -115,7 +141,8 @@
         android:clickable="true"
         android:text="List It!"
         android:textColor="#fff"
-        android:background="#000"/>
+        android:background="#8b58a9"
+        android:focusable="true" />
 
 
 </RelativeLayout>
