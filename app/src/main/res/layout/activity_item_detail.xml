@@ -90,25 +90,13 @@
         android:text="Current Location"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/userLocation"
+    <Button
+        android:id="@+id/map_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="189dp"
-        android:layout_toEndOf="@+id/btnCategory"
-        android:text="" />
-
-    <ImageView
-        android:id="@+id/mapView"
-        android:layout_width="85dp"
-        android:layout_height="60dp"
         android:layout_alignStart="@+id/btnCategory"
         android:layout_below="@+id/location"
-        android:background="@drawable/ic_map"
-        android:clickable="true"
-        android:fitsSystemWindows="true"
-        android:focusable="true" />
+        android:hint="Click here to enter Location" />
 
     <TextView
         android:id="@+id/textViewDescription"

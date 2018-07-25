@@ -1,75 +1,99 @@
 package com.example.nyxulric.simpleappui;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
-public class SecondMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback, LocationListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
-    private Button btn_search, btn_type, btn_zoom_in, btn_zoom_out;
+    private ChildEventListener mChildEventListener;
+    private DatabaseReference mUsers;
+    private FirebaseAuth firebaseAuth;
+    Marker marker;
+    private Button search_btn, save_btn, back;
+    private EditText search_edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second_maps);
+        setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        btn_search = findViewById(R.id.btn_search);
-        btn_type = findViewById(R.id.button_map_type);
-        btn_zoom_in = findViewById(R.id.zoom_in);
-        btn_zoom_out = findViewById(R.id.zoom_out);
+        search_edit = findViewById(R.id.edit_text_search1);
+        search_btn = findViewById(R.id.btn_search1);
+        save_btn = findViewById(R.id.button_save);
+        back = findViewById(R.id.backBtn);
 
-        btn_search.setOnClickListener(new View.OnClickListener() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        mUsers = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid()).child("Users");
+        mUsers.push().setValue(marker);
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onSearch(view);
             }
         });
 
-        btn_type.setOnClickListener(new View.OnClickListener() {
+        save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeType(view);
+                mapDetail(view);
             }
         });
 
-        btn_zoom_in.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mMap.animateCamera(CameraUpdateFactory.zoomIn());
-            }
-        });
-
-        btn_zoom_out.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mMap.animateCamera(CameraUpdateFactory.zoomOut());
+                finish();
+                startActivity(new Intent(MapsActivity2.this, ItemDetailActivity.class));
             }
         });
     }
 
+    public void mapDetail(View view){
+        String names = search_edit.getText().toString().trim();
+        MapDetail mapDetail = new MapDetail(names);
+        mUsers.child("Users").child("Map").setValue(mapDetail);
+        Toast.makeText(this, "Saved",Toast.LENGTH_LONG).show();
+    }
+
     public void onSearch(View view){
-        EditText location_tf = findViewById(R.id.edit_text_search);
+        EditText location_tf = findViewById(R.id.edit_text_search1);
         String location = location_tf.getText().toString();
         List<Address> addressesList = null;
 
@@ -87,29 +111,39 @@ public class SecondMapsActivity extends FragmentActivity implements OnMapReadyCa
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 
-    public void changeType(View view){
-        if (mMap.getMapType() == GoogleMap.MAP_TYPE_NORMAL){
-            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        }
-        else
-        {
-            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        }
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             return;
         }
         mMap.setMyLocationEnabled(true);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
     }
 }

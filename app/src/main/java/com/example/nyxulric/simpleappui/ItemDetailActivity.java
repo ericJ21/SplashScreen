@@ -1,6 +1,8 @@
 package com.example.nyxulric.simpleappui;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,12 +18,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+import java.util.List;
+
 public class ItemDetailActivity extends AppCompatActivity {
 
-    private EditText listingName, productDetail, productPrice, description;
+    private EditText listingName;
+    private EditText productDetail;
+    private EditText productPrice;
+    private EditText description;
     private TextView  category;
     private ImageView map;
-    private Button btnCategory, btnListIt;
+    private Button btnCategory, btnListIt, mapLocation;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -42,7 +50,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         category = findViewById(R.id.viewCategory);
         btnCategory = findViewById(R.id.btnCategory);
         btnListIt = findViewById(R.id.btnListing);
-        map = findViewById(R.id.mapView);
+        mapLocation = findViewById(R.id.map_location);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -63,10 +71,11 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         });
 
-        map.setOnClickListener(new View.OnClickListener() {
+        mapLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
+                startActivity(new Intent(ItemDetailActivity.this, MapsActivity2.class));
             }
         });
     }

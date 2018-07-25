@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+<RelativeLayout
+    android:id="@+id/top_layout"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_alignParentTop="true">
+
+    <EditText
+        android:id="@+id/edit_text_search1"
+        android:layout_width="141dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/btn_search1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="104dp"
+        android:hint="Search"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp" />
+
+    <Button
+        android:id="@+id/btn_search1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/button_save"
+        android:onClick="onSearch"
+        android:text="Search" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="76dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-75dp"
+        android:layout_toEndOf="@+id/button_save"
+        android:text="Back" />
+
+</RelativeLayout>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/top_layout"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:context=".MapsActivity2" />
+
+</RelativeLayout>
