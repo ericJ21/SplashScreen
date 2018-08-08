@@ -100,8 +100,9 @@ public class UpdateProfile extends AppCompatActivity {
             public void onClick(View view) {
                 String name =  newUsername.getText().toString();
                 String email =  newEmail.getText().toString();
+                String image = updateProfilePic.toString();
 
-                UserInformation userInformation = new UserInformation(name,email);
+                UserInformation userInformation = new UserInformation(name,email,image);
 
                 databaseReference.setValue(userInformation);
 

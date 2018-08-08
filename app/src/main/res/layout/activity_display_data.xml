@@ -17,14 +17,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageViewProfile"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="87dp"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="@string/todo"
+            android:fitsSystemWindows="true"
+            android:focusable="true"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#000" />
 
         <TextView
             android:id="@+id/textViewUsername"

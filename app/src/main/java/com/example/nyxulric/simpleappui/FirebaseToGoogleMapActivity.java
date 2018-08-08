@@ -8,7 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,6 +20,8 @@ public class FirebaseToGoogleMapActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Button btnproceed, btnSave, btnReturn;
     private EditText editTextname,editTextlatitude,editTextlongitude;
+    private MapView mapView;
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +34,11 @@ public class FirebaseToGoogleMapActivity extends AppCompatActivity {
         editTextname = findViewById(R.id.edit_text_name);
         editTextlatitude = findViewById(R.id.edit_text_latitude);
         editTextlongitude = findViewById(R.id.edit_text_longitude);
+        mapView = findViewById(R.id.map_view);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid()).child("Users");
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Users");
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.example.nyxulric.simpleappui;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -33,10 +36,12 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.UUID;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private TextView textViewInfoForm;
-    private ImageView imageButtonProfile;
+    private CircleImageView imageButtonProfile;
     private TextView textViewUpload;
     private EditText editTextUsername, editTextEmail, editTextPassword, editTextConfirmPassword;
     private Button buttonRegister;
@@ -52,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-    String username, email, password, confirmpassword;
+    String username, email, password, confirmpassword, image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,20 +172,24 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+//
+////    private String getFileExtension(Uri uri) {
+////        ContentResolver cR = getContentResolver();
+////        MimeTypeMap mime = MimeTypeMap.getSingleton();
+////        return mime.getExtensionFromMimeType(cR.getType(uri));
+////    }
 
     private void sendUserData() {
         username = editTextUsername.getText().toString().trim();
         email = editTextEmail.getText().toString().trim();
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final DatabaseReference myRef = firebaseDatabase.getReference(user.getUid()).child("User Information");
 
-        UserInformation userInformation = new UserInformation(username, email);
-        myRef.setValue(userInformation);
-
+        //Upload Image to Firebase Storage
         if (filepath != null) {
-            //Upload Image to Firebase Storage
-            StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
+            StorageReference imageReference = storageReference.child(user.getUid()).child("Images").child("Profile Pic");
             UploadTask uploadTask = imageReference.putFile(filepath);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -190,7 +199,9 @@ public class RegisterActivity extends AppCompatActivity {
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    UserInformation userInformation = new UserInformation(username, email, taskSnapshot.getUploadSessionUri().toString());
                     Toast.makeText(RegisterActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                    myRef.setValue(userInformation);
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -201,12 +212,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
-
-//
-//        if (!password.equals(confirmpassword)) {
-//            Toast.makeText(this, "Password not matching", Toast.LENGTH_LONG).show();
-//        }else {
-//            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-//        }
     }
 }

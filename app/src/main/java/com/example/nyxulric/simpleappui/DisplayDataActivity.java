@@ -30,6 +30,8 @@ import com.squareup.picasso.Picasso;
 import java.net.URL;
 import java.util.UUID;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class DisplayDataActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
@@ -37,7 +39,7 @@ public class DisplayDataActivity extends AppCompatActivity implements View.OnCli
     private DatabaseReference databaseReference;
     private FirebaseStorage firebaseStorage;
 
-    private ImageView imageViewProfile;
+    private CircleImageView imageViewProfile;
     private TextView textViewUsername, textViewEmail;
     private Button buttonOut, buttonRemove, buttonEdit, btnChangePassword;
 
@@ -57,11 +59,12 @@ public class DisplayDataActivity extends AppCompatActivity implements View.OnCli
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        databaseReference = firebaseDatabase.getReference(user.getUid()).child("User Information");
 
         StorageReference storageReference = firebaseStorage.getReference();
-        storageReference.child(firebaseAuth.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storageReference.child(user.getUid()).child("Images/Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).fit().centerCrop().into(imageViewProfile);

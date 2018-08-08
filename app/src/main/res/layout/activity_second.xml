@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="197dp"
+        android:layout_marginTop="79dp"
         android:text="Second Activity"
         android:textSize="20sp" />
 
@@ -22,7 +22,6 @@
         android:layout_height="30dp"
         android:layout_below="@+id/textviewSell"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-202dp"
         android:background="@drawable/ic_add"
         android:clickable="true"
         android:focusable="true" />
@@ -31,16 +30,18 @@
         android:id="@+id/textviewSell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="202dp"
+        android:layout_marginTop="217dp"
         android:text="Want to sell? Click this button" />
 
     <Button
         android:id="@+id/btnProfileData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="144dp"
         android:text="Profile"
         android:textSize="14sp" />
 
@@ -48,10 +49,46 @@
         android:id="@+id/btn_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/button_map"
+        android:layout_marginEnd="13dp"
+        android:text="Map Location" />
+
+    <Button
+        android:id="@+id/button_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="93dp"
-        android:text="Map Location" />
+        android:layout_marginBottom="215dp"
+        android:text="Map" />
+
+    <Button
+        android:id="@+id/btn_geofire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/btn_map"
+        android:layout_marginStart="25dp"
+        android:text="Geofire Map" />
+
+    <Button
+        android:id="@+id/geofire_map_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="153dp"
+        android:text="Approximate Location" />
+
+    <Button
+        android:id="@+id/btn_ItemPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
+        android:text="Item Page" />
 
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,7 +60,8 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         back = findViewById(R.id.backBtn);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        mUsers = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid()).child("Users");
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        mUsers = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Users");
         mUsers.push().setValue(marker);
 
         search_btn.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +91,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         String names = search_edit.getText().toString().trim();
         MapDetail mapDetail = new MapDetail(names);
         mUsers.child("Users").child("Map").setValue(mapDetail);
+
         Toast.makeText(this, "Saved",Toast.LENGTH_LONG).show();
     }
 
@@ -108,18 +111,20 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         Address address = addressesList.get(0);
         LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
         mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(8));
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             return;
         }
         mMap.setMyLocationEnabled(true);
+
     }
 
     @Override
